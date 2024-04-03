@@ -4,27 +4,6 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 
-def save_image(image, output_path):
-    """
-    保存图像到指定路径。
-
-    参数：
-    - image: 要保存的图像，OpenCV 格式的图像数组。
-    - output_path: 要保存的目标文件路径，包括文件名和文件扩展名。
-    """
-    # 确保输出文件夹存在
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    # 尝试保存图像
-    success = cv2.imwrite(output_path, image)
-
-    # 检查保存是否成功
-    if success:
-        print('图像已保存到:', output_path)
-    else:
-        print('保存图像失败')
-
-
 def add_chinese_text(image, text, font_path='font/simsun.ttc', font_size=30, font_color=(0, 255, 0), position=(10, 10)):
     """
     在图像上添加中文文本。
@@ -73,7 +52,10 @@ def main():
 
         # 将图像保存到本地
         output_path = 'output/001.jpg'
-        save_image(cv2_image_with_text, output_path)
+        # 确保输出文件夹存在
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
+        # 保存图像
+        cv2.imwrite(output_path, cv2_image_with_text)
     else:
         print('无法加载图像：', image_path)
 
