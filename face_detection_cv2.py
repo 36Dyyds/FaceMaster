@@ -18,6 +18,6 @@ for (x, y, w, h) in faces:
     cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
 
 # 显示图像
-cv2.imshow('Emotion Detection', image)
+cv2.imshow('Face Detection', image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
