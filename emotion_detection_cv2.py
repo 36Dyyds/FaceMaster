@@ -64,7 +64,7 @@ def detect_emotion(image, model, face_cascade, confidence_threshold=0.6):
 
             # 绘制情绪标签和置信度
             emotion = f'{emotion_labels[label]}：{max_confidence * 100:.2f}%'
-            image = add_chinese_text(image, emotion, position=(x, y - 30))
+            image = add_chinese_text(image, emotion, position=(x, y - 35))
         else:
             print(f'表情：{emotion_labels[label]}，置信度：{max_confidence * 100:.2f}%')
 

@@ -64,7 +64,7 @@ def detect_emotion(image, model, detector, predictor, confidence_threshold=0.6):
 
             # 绘制情绪标签和置信度
             emotion = f'{emotion_labels[label]}：{max_confidence * 100:.2f}%'
-            image = add_chinese_text(image, emotion, position=(x, y - 30))
+            image = add_chinese_text(image, emotion, position=(x, y - 35))
 
             # 获取68个特征点
             shape = predictor(image, face)
