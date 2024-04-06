@@ -1,5 +1,4 @@
 import os
-
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
@@ -34,33 +33,37 @@ def add_chinese_text(image, text, font_path='font/simsun.ttc', font_size=30, fon
     return cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
 
 
-def detect_emotion(image, model, face_cascade, confidence_threshold=0.8):
+def detect_emotion(image, model, face_cascade, confidence_threshold=0.6):
     # 定义表情类别
     emotion_labels = ['哀', '惊', '惧', '乐', '怒', '厌', '中']
 
-    # 缩放图片
-    image = cv2.resize(image, None, fx=0.8, fy=0.8)
     # 转换为灰度图像
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # 加载人脸检测器
-    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(48, 48))
 
     for (x, y, w, h) in faces:
         # 对检测到的每张人脸进行情绪识别
         face_roi = gray[y:y + h, x:x + w]
+
         resized_face = cv2.resize(face_roi, (48, 48))
         normalized_face = resized_face / 255.0
         reshaped_face = np.reshape(normalized_face, (1, 48, 48, 1))
         result = model.predict(reshaped_face)
 
-        # 获取最大置信度和对应的标签
+        # 获取最大置信度
         max_confidence = np.max(result)
+        # 获取情绪标签
         label = np.argmax(result)
-        emotion = f'{emotion_labels[label]}：{max_confidence * 100:.2f}%'
-        # 绘制人脸框和情绪标签（如果置信度高于80%阈值）
+
+        # 置信度高于60%
         if max_confidence > confidence_threshold:
+            # 绘制人脸框
             cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+            # 绘制情绪标签和置信度
+            emotion = f'{emotion_labels[label]}：{max_confidence * 100:.2f}%'
             image = add_chinese_text(image, emotion, position=(x, y - 30))
         else:
             print(f'表情：{emotion_labels[label]}，置信度：{max_confidence * 100:.2f}%')
@@ -75,8 +78,11 @@ def main():
     face_cascade = cv2.CascadeClassifier('models/haarcascade_frontalface_default.xml')
 
     # 读取图片
-    image_path = 'images/002.jpg'
+    image_path = 'images/003.jpg'
     image = cv2.imread(image_path)
+
+    # # 缩放图片
+    # image = cv2.resize(image, None, fx=0.8, fy=0.8)
 
     # 进行情绪识别
     result_image = detect_emotion(image, model, face_cascade)
@@ -87,7 +93,7 @@ def main():
     cv2.destroyAllWindows()
 
     # 将图像保存到本地
-    output_path = 'output/002.jpg'
+    output_path = 'output/003.jpg'
     # 确保输出文件夹存在
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     # 保存图像
