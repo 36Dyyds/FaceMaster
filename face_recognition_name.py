@@ -73,10 +73,10 @@ def main():
         image = add_chinese_text(image, name, position=(left, top - 35))
 
     # 显示结果
-    cv2.imshow("Face Detection", image)
+    cv2.imshow('Name Detection', image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

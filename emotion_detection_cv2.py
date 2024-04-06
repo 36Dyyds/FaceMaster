@@ -100,5 +100,5 @@ def main():
     cv2.imwrite(output_path, result_image)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

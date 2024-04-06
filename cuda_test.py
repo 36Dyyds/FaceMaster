@@ -18,12 +18,12 @@ cuDNN 版本：8.1.1
 """
 
 print('Python 版本：', sys.version)
-print("TensorFlow版本：", tf.__version__)
-print("可用GPU物理设备：", tf.config.list_physical_devices('GPU'))
-print("是否使用CUDA构建：", tf.test.is_built_with_cuda)
-print("当前可用GPU设备名：", tf.test.gpu_device_name())
-print("当前可见设备列表：", tf.config.get_visible_devices())
-print("系统中是否有可用GPU：", tf.test.is_gpu_available())
+print('TensorFlow版本：', tf.__version__)
+print('可用GPU物理设备：', tf.config.list_physical_devices('GPU'))
+print('是否使用CUDA构建：', tf.test.is_built_with_cuda)
+print('当前可用GPU设备名：', tf.test.gpu_device_name())
+print('当前可见设备列表：', tf.config.get_visible_devices())
+print('系统中是否有可用GPU：', tf.test.is_gpu_available())
 
 
 # 指定在cpu上运行

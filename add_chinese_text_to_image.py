@@ -60,5 +60,5 @@ def main():
         print('无法加载图像：', image_path)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

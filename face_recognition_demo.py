@@ -23,6 +23,6 @@ for face_landmarks in face_landmarks_list:
             cv2.circle(image, point, 2, (255, 0, 0), -1)
 
 # 显示结果
-cv2.imshow("Face Detection", image)
+cv2.imshow('Face Detection', image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

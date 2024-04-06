@@ -144,5 +144,5 @@ def main():
 
 
 # 如果作为主模块运行，则调用主方法
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
