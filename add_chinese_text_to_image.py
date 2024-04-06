@@ -39,11 +39,11 @@ def main():
     # 检查是否成功读取图片
     if image is not None:
         # # 缩放图片
-        # image = cv2.resize(image, None, fx=0.5, fy=0.5)
+        # image = cv2.resize(image, None, fx=0.8, fy=0.8)
 
         # 在图像上添加中文文本
         text = '你好，PIL！'
-        cv2_image_with_text = add_chinese_text(image, text)
+        cv2_image_with_text = add_chinese_text(image, text, font_size=80)
 
         # 显示图片
         cv2.imshow('Image with Chinese Text', cv2_image_with_text)
