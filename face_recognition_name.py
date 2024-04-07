@@ -55,7 +55,7 @@ def main():
         face_encoding = face_recognition.face_encodings(image_file)[0]
         face_encodings.append(face_encoding)
 
-    # 在视频帧中查找人脸
+    # 在图片中查找人脸
     face_locations = face_recognition.face_locations(image)
     face_encodings_in_image = face_recognition.face_encodings(image, face_locations)
 
@@ -76,6 +76,13 @@ def main():
     cv2.imshow('Name Detection', image)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
+
+    # 将图像保存到本地
+    output_path = 'output/004.jpg'
+    # 确保输出文件夹存在
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    # 保存图像
+    cv2.imwrite(output_path, image)
 
 
 if __name__ == '__main__':
