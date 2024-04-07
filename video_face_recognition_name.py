@@ -79,7 +79,7 @@ def main():
             image = add_chinese_text(image, name, position=(left, top - 35))
 
         # 显示结果
-        cv2.imshow('Name Detection', image)
+        cv2.imshow('Video Name Detection', image)
         # 退出循环
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
