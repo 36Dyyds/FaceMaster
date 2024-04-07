@@ -16,11 +16,11 @@ FaceMaster 是一款基于 Python 的入门级人脸识别项目，旨在为用�
 
 以下演示图片均来源于 https://www.pexels.com 免费下载，如有侵权请告知删除！！！
 
-![表情识别图片](https://gitee.com/qq153128151/FaceMaster/raw/master/output/002.jpg)
+![表情识别图片](https://gitee.com/qq153128151/FaceMaster/raw/master/output/demo1.jpg)
 
 ### 姓名识别
 
-![姓名识别图片](https://gitee.com/qq153128151/FaceMaster/raw/master/output/004.jpg)
+![姓名识别图片](https://gitee.com/qq153128151/FaceMaster/raw/master/output/demo2.jpg)
 
 ## 项目环境
 
