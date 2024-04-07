@@ -81,7 +81,7 @@ def main():
     image_path = 'images/003.jpg'
     image = cv2.imread(image_path)
 
-    # # 缩放图片
+    # 缩放图片
     # image = cv2.resize(image, None, fx=0.8, fy=0.8)
 
     # 进行情绪识别

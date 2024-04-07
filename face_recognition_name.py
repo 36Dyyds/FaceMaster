@@ -38,7 +38,7 @@ def main():
     image_path = 'images/002.jpg'
     image = cv2.imread(image_path)
 
-    # # 缩放图片
+    # 缩放图片
     # image = cv2.resize(image, None, fx=0.8, fy=0.8)
 
     # 加载人脸图片及其对应的中文名字

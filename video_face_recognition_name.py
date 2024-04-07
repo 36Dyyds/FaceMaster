@@ -44,7 +44,7 @@ def main():
         if not ret:
             break
 
-        # # 缩放视频帧
+        # 缩放视频帧
         # image = cv2.resize(image, None, fx=0.8, fy=0.8)
 
         # 加载人脸图片及其对应的中文名字
