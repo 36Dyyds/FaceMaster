@@ -11,22 +11,22 @@ def main():
 
     while True:
         # 读取视频帧
-        ret, image = video_capture.read()
+        ret, frame = video_capture.read()
         if not ret:
             break
 
         # 缩放图片
-        # image = cv2.resize(image, None, fx=0.8, fy=0.8)
+        # frame = cv2.resize(frame, None, fx=0.8, fy=0.8)
 
         # 检测人脸
-        faces = face_cascade.detectMultiScale(image)
+        faces = face_cascade.detectMultiScale(frame)
 
         # 在图像中标记人脸
         for (x, y, w, h) in faces:
-            cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+            cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
         # 显示图像
-        cv2.imshow('Video Face Detection', image)
+        cv2.imshow('Video Face Detection', frame)
         # 退出循环
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

@@ -33,7 +33,35 @@ def add_chinese_text(image, text, font_path='font/simsun.ttc', font_size=30, fon
     return cv2.cvtColor(np.array(pil_image), cv2.COLOR_RGB2BGR)
 
 
+def load_face_names(image_dir):
+    """
+    加载指定目录下的人脸图片，并将其对应的中文名字和人脸编码返回。
+
+    参数:
+    image_dir (str): 包含人脸图片的目录路径。
+
+    返回:
+    tuple: 包含两个元素的元组。第一个元素是人脸编码的列表，第二个元素是对应的人名列表。
+    """
+    # 加载人脸图片及其对应的中文名字
+    face_images = os.listdir(image_dir)
+    face_encodings = []
+    face_names = []
+    for face_image in face_images:
+        # 获取图片的名称作为姓名
+        name, _ = os.path.splitext(face_image)
+        face_names.append(name)
+
+        image_file = face_recognition.load_image_file(os.path.join(image_dir, face_image))
+        face_encoding = face_recognition.face_encodings(image_file)[0]
+        face_encodings.append(face_encoding)
+    return face_encodings, face_names
+
+
 def main():
+    # 包含人脸图片的目录路径
+    face_encodings, face_names = load_face_names('face_names')
+
     # 加载视频
     video_path = 'videos/001.mp4'
     video_capture = cv2.VideoCapture(video_path)
@@ -46,20 +74,6 @@ def main():
 
         # 缩放视频帧
         # image = cv2.resize(image, None, fx=0.8, fy=0.8)
-
-        # 加载人脸图片及其对应的中文名字
-        image_dir = 'face_names'
-        face_images = os.listdir(image_dir)
-        face_encodings = []
-        face_names = []
-        for face_image in face_images:
-            # 获取图片的名称作为姓名
-            name, _ = os.path.splitext(face_image)
-            face_names.append(name)
-
-            image_file = face_recognition.load_image_file(os.path.join(image_dir, face_image))
-            face_encoding = face_recognition.face_encodings(image_file)[0]
-            face_encodings.append(face_encoding)
 
         # 在视频帧中查找人脸
         face_locations = face_recognition.face_locations(image)
@@ -79,7 +93,7 @@ def main():
             image = add_chinese_text(image, name, position=(left, top - 35))
 
         # 显示结果
-        cv2.imshow('Video Name Detection', image)
+        cv2.imshow('Video Face Name Detection', image)
         # 退出循环
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
